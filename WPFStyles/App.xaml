@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="Themes/ModernComboBoxTheme.xaml" />
                 <ResourceDictionary Source="Themes/ModernDataGridTheme.xaml" />
                 <ResourceDictionary Source="Themes/ModernTextBoxTheme.xaml" />
+                <ResourceDictionary Source="Themes/ModernListBoxTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
