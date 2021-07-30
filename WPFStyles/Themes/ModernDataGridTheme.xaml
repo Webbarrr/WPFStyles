@@ -1,46 +1,59 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Colours.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style BasedOn="{StaticResource {x:Type TextBox}}"
-           TargetType="{x:Type TextBox}"
-           x:Key="ModernTextBoxTheme">
-        <Style.Setters>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <materialDesign:Card>
-                            <Grid VerticalAlignment="Stretch"
-                              HorizontalAlignment="Stretch"
-                              Background="{TemplateBinding Background}">
+    <Style TargetType="DataGrid" x:Key="ModernDataGridTheme">
+        <!--column headers-->
+        <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}" />
+        <Setter Property="Foreground" Value="{StaticResource MaterialDesignDarkForeground}" />
+        <Setter Property="AlternationCount" Value="2" />
+        <Setter Property="BorderBrush" Value="{StaticResource Grey4}" />
+        <Setter Property="ColumnWidth" Value="auto" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="20" />
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="20" />
-                                </Grid.RowDefinitions>
+        <Setter Property="ColumnHeaderStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Foreground" Value="{StaticResource MainAccent}" />
+                    <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="BorderThickness" Value="5" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="FontSize" Value="16" />
+                </Style>
+            </Setter.Value>
+        </Setter>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20" />
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="20" />
-                                </Grid.ColumnDefinitions>
+        <Setter Property="RowStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
 
-                                <TextBox Grid.Row="1" Grid.Column="1"
-                                         MinWidth="{TemplateBinding Property=MinWidth}"
-                                         Text="{TemplateBinding Property=Text}"
-                                         materialDesign:HintAssist.IsFloating="True"
-                                         materialDesign:HintAssist.Foreground="{StaticResource MainAccent}"
-                                         VerticalAlignment="Stretch" />
-                            </Grid>
-                        </materialDesign:Card>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style.Setters>
+                    <!--alt row colours-->
+                    <Style.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                            <Setter Property="Background" Value="{StaticResource Grey2}" />
+                        </Trigger>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="{StaticResource Grey3}" />
+                        </Trigger>
+
+                        <!--hightlighting rows on mouseover-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource MainAccent}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource Grey1}" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>
